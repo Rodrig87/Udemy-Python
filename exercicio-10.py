@@ -3,7 +3,6 @@ import os
 lista = []
 while True:
     
-    try:
         menu = input(str("SELECIONE UMA OPÇÃO.\n[I]nserir - [A]pagar - [L]istar: "))
 
         if menu.upper() == "I":
@@ -13,21 +12,24 @@ while True:
 
         elif menu.upper() == "A":
                 remover = int(input("Diga o valor do produto que você quer apagar: "))
-                lista.pop(remover)
-                os.system("cls")
+                try:
+                        lista.pop(remover)
+                        os.system("cls")
+                except ValueError:
+                        print("Você precisa digitar um número inteiro.")
+
+                except IndexError:
+                        print("Esse indice não foi encontrado.")
 
         elif menu.upper() == "L":
+                os.system("cls")
+                
+                if len(lista) == 0:
+                        print("Nada para listar")
+                
                 for indice, produtos in enumerate(lista):
                         print(indice, produtos)
         else:
-                continue
-
-    except:
-           continue
-    
+                print("Digite: I, A ou L: ")
 
     
-    
-    
-
-
